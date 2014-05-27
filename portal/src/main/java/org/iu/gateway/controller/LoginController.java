@@ -16,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.scigap.iucig.gateway.util.Constants;
-import org.scigap.iucig.gateway.util.ViewNames;
-import org.scigap.iucig.service.UserService;
+
 
 
 //import edu.uiuc.ncsa.security.util.pkcs.CertUtil;
@@ -38,7 +36,7 @@ public class LoginController {
 	
 	private final Logger logger = Logger.getLogger(getClass());
 	
-	private UserService userService;
+//	private UserService userService;
 
 	public String login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(true);
@@ -67,17 +65,17 @@ public class LoginController {
                 HttpsURLConnection casConnection = (HttpsURLConnection) casValidatorURL.openConnection();
                 BufferedReader in = new BufferedReader(new InputStreamReader(casConnection.getInputStream()));
                 String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    if(inputLine.equalsIgnoreCase(Constants.YES)) {
-                        String username = in.readLine().trim();
-//                        Authentication authentication = userService.setAuthenticatedUser(username, null);
-//                        successHandler.onAuthenticationSuccess(request, response, authentication);
-                        logger.info("Logged in as "+username);
-                    } else {
-                        logger.debug("CAS Ticket validation failure ! Proceeding to Failure Page");
-                        return ViewNames.LOGIN_FAILURE_PAGE;
-                    }
-                }
+//                while ((inputLine = in.readLine()) != null) {
+//                    if(inputLine.equalsIgnoreCase(Constants.YES)) {
+//                        String username = in.readLine().trim();
+////                        Authentication authentication = userService.setAuthenticatedUser(username, null);
+////                        successHandler.onAuthenticationSuccess(request, response, authentication);
+//                        logger.info("Logged in as "+username);
+//                    } else {
+//                        logger.debug("CAS Ticket validation failure ! Proceeding to Failure Page");
+//                        return ViewNames.LOGIN_FAILURE_PAGE;
+//                    }
+//                }
                 logger.debug("Login success ! Proceeding to Home Page");
                 in.close();
             } catch (IOException e) {
@@ -111,23 +109,23 @@ public class LoginController {
             HttpsURLConnection casConnection = (HttpsURLConnection) casValidatorURL.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(casConnection.getInputStream()));
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                if(inputLine.equalsIgnoreCase(Constants.YES)) {
-                    String username = in.readLine().trim();
-                    System.out.println("username 1 : " + username);
-                    userService.setAuthenticatedUser(username, null);
-                    logger.info("Logged in as "+username);
-                } else {
-                    logger.debug("CAS Ticket validation failure ! Proceeding to Failure Page");
-                    return ViewNames.LOGIN_FAILURE_PAGE;
-                }
-            }
+//            while ((inputLine = in.readLine()) != null) {
+//                if(inputLine.equalsIgnoreCase(Constants.YES)) {
+//                    String username = in.readLine().trim();
+//                    System.out.println("username 1 : " + username);
+//                    userService.setAuthenticatedUser(username, null);
+//                    logger.info("Logged in as "+username);
+//                } else {
+//                    logger.debug("CAS Ticket validation failure ! Proceeding to Failure Page");
+//                    return ViewNames.LOGIN_FAILURE_PAGE;
+//                }
+//            }
             logger.debug("Login success ! Proceeding to Home Page");
             in.close();
         } catch (IOException e) {
             logger.error("Error contacting CAS", e);
         }
-        return ViewNames.INDEX_PAGE;
+        return null;
 	}
 	
 //	@ResponseBody
@@ -146,7 +144,7 @@ public class LoginController {
 //	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("Logging out of Cybergateway");
-		userService.clearAuthenticatedUser();
+//		userService.clearAuthenticatedUser();
 		if(request.getSession(false)!=null) {
 			response.setHeader("Cache-Control", "no-cache, no-store");
 			response.setHeader("Pragma", "no-cache");
