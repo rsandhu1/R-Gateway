@@ -15,7 +15,7 @@
 	</properties>
 
 	<modules>
-		<!--module>portal</module>-->
+		<module>portal</module>
         	<module>security/cilogon2-client</module>
     </modules>
     
