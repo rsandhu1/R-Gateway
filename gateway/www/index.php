@@ -161,18 +161,6 @@ connect_to_id_store();
                 </div>
             </div>
         </div>
-        <div class="<?php echo $columnClass; ?>">
-            <div class="thumbnail" style="border:none">
-                <img src="resources/assets/RStudio-Ball.png" alt="R-Gateway">
-                <div class="caption">
-                    <p>
-               
-                    </p>
-                    <p><a href="http://www.rstudio.com/"
-                          target="_blank">Learn more <span class="glyphicon glyphicon-new-window"></span></a></p>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>

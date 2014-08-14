@@ -1,9 +1,19 @@
-<html>  
-<head>  
-<meta charset="UTF-8">  
-<title>R Script</title>
+<?php
+session_start();
+include 'utilities.php';
+connect_to_id_store();
+verify_login();
+
+?>
+<html>
+
+<?php create_head(); ?>
+
+<body>
+
+<?php create_nav_bar(); ?>
+
 <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
-<base href="http://www.compileonline.com" />
 <script type="text/javascript" src="/easyui/jquery-1.8.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
@@ -113,7 +123,8 @@ if ( $.browser.msie ) {
 </div>
 </div> 
 <!-- TOP MENU ENDS -->
-   <div data-options="region:'south',split:false,border:false" style="height:60px;"><!-- BOTTOM STARTS -->
+   <div data-options="region:'south',split:false,border:false" style="height:60px;">
+   <!-- BOTTOM STARTS -->
       <table style="width:99.6%; margin-top:5px;">
       <tr>
       <td style="padding-left:10px;font:16px bold;text-align:right;white-space: nowrap;">Command Line Arguments: </td>
@@ -121,8 +132,10 @@ if ( $.browser.msie ) {
       <td style="width:46%;padding-top:4px;"><input class="easyui-validatebox" type="text" data-options="required:false" style="width:100%;height:25px;padding-left:5px; border:1px solid #bad5ff;overflow:auto;resize:none;" name="args"/>   </td>
       <td style="padding-left:10px;font:16px bold;text-align:right;white-space: nowrap;">STDIN Input: </td>   <td style="margin-top:5px;text-align:left;white-space: nowrap;"><a title="What is this?" href="/stdin_input.php" target="contentview" class="easyui-linkbutton" data-options="iconCls:'icon-help',plain:true"></a></td>
       <td style="width:54%;padding-top:4px;"><input class="easyui-validatebox" type="text" data-options="required:false" style="width:100%;height:25px;padding-left:5px; border:1px solid #bad5ff;overflow:auto;resize:none;" name="stdinput"/>   </tr>
-      </table></div><!-- BOTTOM ENDS --><div data-options="region:'east',iconCls:'icon-result',title:'Result',split:true,tools:'#tab-tools2',toolPosition:'right'" id="right" style="width:480px;"><!-- RIGHT PANEL STARTS --> 
-<iframe id="view" name="contentview" src="howto.php" style="background:#fff;position:relative;width:100%;height:99%;border:0px solid #aaa;margin:0px;padding:0px;overflow:auto;">
+      </table></div>
+  <!-- BOTTOM ENDS -->
+<div data-options="region:'east',iconCls:'icon-result',title:'Result',split:true,tools:'#tab-tools2',toolPosition:'right'" id="right" style="width:480px;"><!-- RIGHT PANEL STARTS --> 
+<iframe id="view" name="contentview" src="" style="background:#fff;position:relative;width:100%;height:99%;border:0px solid #aaa;margin:0px;padding:0px;overflow:auto;">
 </iframe><div id="tab-tools2">
 <a href="/download.php" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-download'" target="contentview" style="position:relative;top:-5px;width:120px;white-space:nowrap;"><b>Download Files</b></a>
 </div>

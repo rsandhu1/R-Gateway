@@ -187,7 +187,7 @@ function create_nav_bar()
     (
         'Editor' => array
         (
-            array('label' => 'R Editor', 'url' => 'editor.html'),
+            array('label' => 'R Editor', 'url' => 'editor.php'),
             array('label' => 'Search History', 'url' => 'history.php')
         ),
         'Help' => array
@@ -213,7 +213,7 @@ function create_nav_bar()
                        <span class="icon-bar"></span>
                        <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php" title="PHP Gateway with Airavata">PGA</a>
+                    <a class="navbar-brand" href="index.php" title="R-Gateway">R-Gateway</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
