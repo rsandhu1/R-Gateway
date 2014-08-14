@@ -296,7 +296,7 @@ function create_head()
 
     echo'
         <head>
-            <title>PHP Reference Gateway</title>
+            <title>R Gateway</title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="icon" href="resources/assets/favicon.ico" type="image/x-icon">
@@ -342,6 +342,117 @@ function create_head()
     ';
 }
 
+/**
+ * Create head tag
+ * Used for all pages
+ */
+function create_editor()
+{
+    header( 'Cache-Control: no-store, no-cache, must-revalidate' );
+    header( 'Cache-Control: post-check=0, pre-check=0', false );
+    header( 'Pragma: no-cache' );
+
+    echo'
+        <head>
+            <title>R Gateway</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+           
+           <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+		   <script type="text/javascript" src="/resources/easyui/jquery.min.js"></script>
+		   <link rel="stylesheet" type="text/css" href="/resources/easyui/themes/default/easyui.css">
+           <link rel="stylesheet" type="text/css" href="/resources/easyui/themes/icon.css">
+           <link rel="stylesheet" type="text/css" href="/resources/assets/editor.css">
+           <script type="text/javascript" src="/resources/easyui/jquery.easyui.min.js"></script>
+           <script type="text/javascript" src="/resources/jquery.ba-resize.min.js"></script>
+            <script type="text/javascript" src="/resources/jquery.hotkeys.js"></script>
+            <script src="/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/ace/src-min/keybinding-vim.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/ace/src-min/keybinding-emacs.js" type="text/javascript" charset="utf-8"></script>
+                <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+// Binding keys
+$(document).ready(function(){
+   $(document).bind("keydown", "ctrl+e", function assets() {
+      submitForm();
+      return false;
+   });
+   $(document).bind("keydown", "meta+e", function assets() {
+      submitForm();
+      return false;
+   });
+});
+$(window).load(function () {
+   $("#cc").css({"visibility":"visible"});
+   $("#cc").fadeIn(1000);
+   $("#loading").css({"visibility":"hidden"});
+});
+$(window).load(function(){
+      var newwidth = $(window).width();
+      newwidth = newwidth / 2;
+      var p = $("#cc").layout("panel","east");
+      p.panel("resize",{width:newwidth});
+      $("#cc").layout("resize");
+});
+if ( $.browser.msie ) {
+/*
+   window.onbeforeunload = function(e){
+    var tabClick = false;
+    $("#tt").tabs({
+        onSelect:function(title,index){
+           tabClick = true;
+           return true;
+        }
+    });
+    if( !tabClick ){
+      return "Leaving this page may cause loss of your code!";
+    }
+   };
+*/
+}else{
+   window.onbeforeunload = function(){
+      return "Leaving this page may cause loss of your code!";
+   };
+}
+  function setEditor(){
+      var x = document.getElementById("editor").selectedIndex;
+      var y = document.getElementById("editor").options;
+      var vim = require("ace/keyboard/vim").handler;
+      var emac = require("ace/keyboard/emacs").handler;
+      var editmod = null;
+      var index = y[x].index;
+     if( index == 1 ){
+        editmod = vim;
+     }else if( index == 2 ){
+        editmod = emac;
+     }
+     if( editors["code"] ){
+        editors["code"].setKeyboardHandler(editmod);
+     }
+     if( editors["html"] ){
+        editors["html"].setKeyboardHandler(editmod);
+     }
+     if( editors["util"] ){
+        editors["util"].setKeyboardHandler(editmod);
+     }
+     if( editors["support"] ){
+        editors["support"].setKeyboardHandler(editmod);
+     }
+     if( editors["header"] ){
+        editors["header"].setKeyboardHandler(editmod);
+     }
+     if( editors["inputs"] ){
+        editors["inputs"].setKeyboardHandler(editmod);
+     }
+   }
+</script>
+         
+        </head>
+    ';
+}
 
 /**
  * Open the XML file containing the community token

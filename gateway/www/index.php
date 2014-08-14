@@ -148,7 +148,7 @@ connect_to_id_store();
         ?>
         <div class="<?php echo $columnClass; ?>">
             <div class="thumbnail" style="border:none">
-                <img src="resources/assets/RStudio-Ball.png" alt="R-Gateway">
+                <img src="resources/assets/R.png" alt="R-Gateway">
                 <div class="caption">
                     <p>
                        R-Gateway

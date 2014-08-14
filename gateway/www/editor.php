@@ -1,105 +1,14 @@
 <?php
-session_start();
+//session_start();
 include 'utilities.php';
-connect_to_id_store();
-verify_login();
+//connect_to_id_store();
+//verify_login();
 
 ?>
 <html>
 
-<?php create_head(); ?>
+<?php create_editor(); ?>
 
-<body>
-
-<?php create_nav_bar(); ?>
-
-<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
-<script type="text/javascript" src="/easyui/jquery-1.8.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
-<script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/jquery.ba-resize.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/col.css">
-<script type="text/javascript" src="/jquery.hotkeys.js"></script>
-<script src="/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="/ace/src-min/keybinding-vim.js" type="text/javascript" charset="utf-8"></script>
-<script src="/ace/src-min/keybinding-emacs.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-// Binding keys
-$(document).ready(function(){
-   $(document).bind('keydown', 'ctrl+e', function assets() {
-      submitForm();
-      return false;
-   });
-   $(document).bind('keydown', 'meta+e', function assets() {
-      submitForm();
-      return false;
-   });
-});
-$(window).load(function () {
-   $("#cc").css({"visibility":"visible"});
-   $("#cc").fadeIn(1000);
-   $("#loading").css({"visibility":"hidden"});
-});
-$(window).load(function(){
-      var newwidth = $(window).width();
-      newwidth = newwidth / 2;
-      var p = $("#cc").layout('panel','east');
-      p.panel('resize',{width:newwidth});
-      $('#cc').layout('resize');
-});
-if ( $.browser.msie ) {
-/*
-   window.onbeforeunload = function(e){
-    var tabClick = false;
-    $('#tt').tabs({
-        onSelect:function(title,index){
-           tabClick = true;
-           return true;
-        }
-    });
-    if( !tabClick ){
-      return "Leaving this page may cause loss of your code!";
-    }
-   };
-*/
-}else{
-   window.onbeforeunload = function(){
-      return "Leaving this page may cause loss of your code!";
-   };
-}
-  function setEditor(){
-      var x = document.getElementById("editor").selectedIndex;
-      var y = document.getElementById("editor").options;
-      var vim = require("ace/keyboard/vim").handler;
-      var emac = require("ace/keyboard/emacs").handler;
-      var editmod = null;
-      var index = y[x].index;
-     if( index == 1 ){
-        editmod = vim;
-     }else if( index == 2 ){
-        editmod = emac;
-     }
-     if( editors['code'] ){
-        editors['code'].setKeyboardHandler(editmod);
-     }
-     if( editors['html'] ){
-        editors['html'].setKeyboardHandler(editmod);
-     }
-     if( editors['util'] ){
-        editors['util'].setKeyboardHandler(editmod);
-     }
-     if( editors['support'] ){
-        editors['support'].setKeyboardHandler(editmod);
-     }
-     if( editors['header'] ){
-        editors['header'].setKeyboardHandler(editmod);
-     }
-     if( editors['inputs'] ){
-        editors['inputs'].setKeyboardHandler(editmod);
-     }
-   }
-</script>
 </head>
 <body class="easyui-layout" id="cc">
 <form id="ff">
@@ -107,19 +16,9 @@ if ( $.browser.msie ) {
 <input type="hidden" name="code"/>
 <input type="hidden" name="inputs"/>
 <div id="loading"></div>
-<div data-options="region:'north',split:false,border:false" style="height:50px; background:url(/images/head_bg.png) repeat-x !important;"><!-- TOP MENU STARTS -->
-<div style="padding:10px;"> 
-<!--<a href="http://www.compileonline.com" alt="Compile On Line"><img src="/images/col.png" style="display:inline;float:left;height:30px;margin-left:5px;border:0px;"/></a>
-<h1 id="version">Version Info</h1>
-<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-help'" style="float:right !important; margin-right:5px;">Help</a>  
-<a href="/about.php" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-about'" style="float:right !important">About</a>  
-<a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-edit'" style="float:right !important">Web Editors</a>  
-<a href="http://www.compileonline.com" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-home'" style="float:right !important">Home</a> 
-</div>  
-<div id="mm2" style="width:150px;">
-   <div onclick='top.location.href="/online_vi_editor.php"'>Online VI Editor</div>
-   <div onclick='top.location.href="/online_emacs_editor.php"'>Online Emacs Editor</div>
-</div>-->
+<div data-options="region:'north',split:false,border:false" style="height:70px; repeat-x !important;"><!-- TOP MENU STARTS -->
+<div>
+    <?php create_nav_bar(); ?>
 </div>
 </div> 
 <!-- TOP MENU ENDS -->
@@ -141,7 +40,7 @@ if ( $.browser.msie ) {
 </div>
 </div><!-- RIGHT PANEL ENDS --> 
   
-<div data-options="region:'center'" style="padding:0px;" id="left"><!-- LEFT STARTS -->
+<div data-options="region:'center'" style="height:90px; padding:0px;" id="left"><!-- LEFT STARTS -->
 <div id='check' style='position:absolute;z-index:1001;right:10px; top:4px;'>
   <select id="editor" onchange="setEditor();">
     <option value="default">Default Ace Editor</option>
@@ -149,16 +48,38 @@ if ( $.browser.msie ) {
     <option>The emacs Editor</option>
   </select>
 </div>
-<div data-options="fit:true,border:false,tools:'#tab-tools',toolPosition:'left'" id="tt" class="easyui-tabs">  
-<div title="main.r" style="padding:0px;">  
+<div data-options="fit:true,border:false,tools:'#tab-tools',toolPosition:'left'" id="tt" class="easyui-tabs">
+<div title="wordcount.R" style="padding:0px;">
 <pre id="code" class="editclass">
-x &lt;- rnorm(1000)
-hx &lt;- hist(x, breaks=100, plot=FALSE)
-plot(hx, col=ifelse(abs(hx$breaks) &lt; 1.669, 4, 2))
+
+library(SparkR)
+
+args <- commandArgs(trailing = TRUE)
+
+if (length(args) != 2) {
+  print("Usage: wordcount <master> <file>")
+            q("no")
+            }
+
+            # Initialize Spark context
+            sc <- sparkR.init(args[[1]], "RwordCount")
+            lines <- textFile(sc, args[[2]])
+
+            words <- flatMap(lines,
+            function(line) {
+            strsplit(line, " ")[[1]]
+            })
+            wordCount <- lapply(words, function(word) { list(word, 1L) })
+
+            counts <- reduceByKey(wordCount, "+", 2L)
+            output <- collect(counts)
+
+            for (wordcount in output) {
+            cat(wordcount[[1]], ": ", wordcount[[2]], "\n")
 </pre>
 </div> 
-<div title="input.txt" style="overflow:auto;padding:20px;">  
-<pre id="inputs" class="editclass">This is the file you can use to provide input to your program and later on open it inside your program to process the input.
+<div title="input.txt" style="overflow:auto;padding:20px;">
+<pre id="inputs" class="editclass">This is the file you can use to provide input.
 </pre> 
 </div>
 </div>
