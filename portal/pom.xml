@@ -124,7 +124,7 @@
 								<context>/rgateway</context>
 							</properties>
 						</deployable>
-						<deployable>
+						<!--deployable>
 							<groupId>edu.uiuc.ncsa.security</groupId>
 							<artifactId>cilogon2-client</artifactId>
 							<groupId>edu.uiuc.ncsa.security</groupId>
@@ -132,7 +132,7 @@
 							<properties>
 								<context>/cilogon2</context>
 							</properties>
-						</deployable>
+						</deployable> -->
 					</deployables>
 				</configuration>
 			</plugin>

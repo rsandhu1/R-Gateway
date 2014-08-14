@@ -1,9 +1,7 @@
 <div ng-app="userApp"  ng-controller="UserCtrl">
     <head>
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-        <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>-->
-        <script src="static/js/common.js"></script>
-        <script src="static/js/urlprovider.js"></script>
+        <!--script src="static/js/common.js"></script>
+        <script src="static/js/urlprovider.js"></script>   -->
     </head>
     <div class="navbar navbar-iu navbar-fixed-top" style="position:fixed">
         <div>
@@ -13,7 +11,7 @@
                 <span class="icon-bar"></span>
             </a>
             <span class="nav"><a href="http://www.iu.edu/"><img title="Logo" alt="Indiana University" src="static/images/iu_logo.gif" /></a></span>
-            <span class="brand">Cyberinfrastructure Gateway</span>
+            <span class="brand">R-Gateway</span>
             <div class="nav-collapse">
                 <ul class="nav">
                     <li>
@@ -22,59 +20,17 @@
                     <li>
                         <a id="newsLink" href="news">News</a>
                     </li>
-                    <!-- // TODO: Applications should be authenticated! -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" id="appsLink" href="#">Applications</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="amber">Amber</a></li>
-                        </ul>
-                    </li>
                     <li ng-show="authenticated" class="dropdown">
                         <a class="dropdown-toggle" id="jobLink" href="#">Computing</a>
                         <ul class="dropdown-menu">
                             <li><a href="userJobs">My Jobs</a></li>
-                            <!-- li><a href="submitJobs">Submit Jobs</a></li-->
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-toggle" href="#">All Jobs</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="jobs?machine=bigred2">Big Red II</a></li>
-                                    <li><a href="jobs?machine=mason">Mason</a></li>
-                                    <li><a href="jobs?machine=quarry">Quarry</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-toggle" href="#">Node Info</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="nodeManagement?machine=bigred2">Big Red II</a></li>
-                                    <li><a href="nodeManagement?machine=mason">Mason</a></li>
-                                    <li><a href="nodeManagement?machine=quarry">Quarry</a></li>
-                                </ul>
-                            </li>
                             <li class="divider"></li>
                             <li class="dropdown-submenu">
                                 <a class="dropdown-toggle" href="#">Node Reservations</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="reservations?machine=bigred2">Big Red II</a></li>
-                                    <li><a href="reservations?machine=mason">Mason</a></li>
-                                    <li><a href="reservations?machine=quarry">Quarry</a></li>
                                 </ul>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a id="infoLink" href="searchModulesInfo">Software</a>
-                    </li>
-                    <!--<li ng-show="authenticated">-->
-                    <!--<a id="disciplineLink" href="scienceDiscipline">Science Disciplines</a>-->
-                    <!--</li>-->
-                    <li ng-show="authenticated">
-                        <a id="authenticated" href="charts">My Usage</a>
-                    </li>
-                    <li ng-show="authenticated">
-                        <a id="globusOnlineLink" href="https://iub.globusonline.org/SignIn">File Transfer</a>
-                    </li>
-                    <li ng-show="authenticated">
-                        <a id="fileManagerLink" href="sda">SDA</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" id="aboutLink" href="#">Contact</a>
